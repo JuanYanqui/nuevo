@@ -20,6 +20,8 @@ public class Persona {
 	private String correo;
 	private String telefono;
 	private String direccion;
+
+	private String foto;
 	private Date fechaNacimiento;
 	
 	
@@ -31,10 +33,7 @@ public class Persona {
 		super();
 	}
 
-
-	public Persona(String cedula, String nombres, String apellidos, String genero, String correo, String telefono,
-                   String direccion, Date fechaNacimiento) {
-		super();
+	public Persona(String cedula, String nombres, String apellidos, String genero, String correo, String telefono, String direccion, String foto, Date fechaNacimiento) {
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
@@ -42,12 +41,9 @@ public class Persona {
 		this.correo = correo;
 		this.telefono = telefono;
 		this.direccion = direccion;
+		this.foto = foto;
 		this.fechaNacimiento = fechaNacimiento;
 	}
-
-
-
-
 
 	public Long getId_persona() {
 		return id_persona;
@@ -122,7 +118,11 @@ public class Persona {
 	}
 
 
-	
-	
+	public String getFoto() {
+		return foto;
+	}
 
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 }
