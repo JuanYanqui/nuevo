@@ -21,6 +21,17 @@ public class Usuario {
 	public Usuario() {
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Persona persona;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Empresa empresa;
+
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Rol rol;
+
+
 
 	public Usuario(String cedula, String nombres, String username, String contrasenia, Boolean estado, Persona persona, Empresa empresa, Rol rol) {
 		this.cedula = cedula;
@@ -33,15 +44,6 @@ public class Usuario {
 		this.rol = rol;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Persona persona;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Empresa empresa;
-
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Rol rol;
 
 	public Long getId_usuario() {
 		return id_usuario;

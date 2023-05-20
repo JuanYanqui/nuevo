@@ -58,4 +58,9 @@ public class ProductoServiceImpl implements ProductoService{
             return false;
         }
     }
+
+    @Override
+    public List<Productos> findAllProductosDelaEmpresa(long id_empresa) {
+        return (List<Productos>) productoRepository.findAllProductosDelaEmpresa(id_empresa);
+    }
 }

@@ -1,10 +1,15 @@
 package ista.Backed20.api.controller;
 
 import ista.Backed20.api.entity.Persona;
+import ista.Backed20.api.entity.Rol;
 import ista.Backed20.api.entity.Usuario;
+import ista.Backed20.api.login.LoginUsuario;
+import ista.Backed20.api.login.MessageResponse;
 import ista.Backed20.api.repository.PersonaRepository;
+import ista.Backed20.api.repository.UsuarioRepository;
 import ista.Backed20.api.service.RolServiceImpl;
 import ista.Backed20.api.service.UsuarioService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +26,23 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
-    private PersonaRepository personaRepository;
 
-    @Autowired
-	private RolServiceImpl rolService;
+
+    @GetMapping("/listarUsuario")
+    public ResponseEntity <List<Usuario>> listarUsuario() {
+        return ResponseEntity.ok().body(usuarioService.findAllUsuario());
+    }
+
+    @GetMapping("/listarUsuarioPorEmpresa/{id_empresa}")
+    public ResponseEntity <List<Usuario>> listarUsuario(@PathVariable("id_empresa") long id_empresa) {
+        return ResponseEntity.ok().body(usuarioService.findAllUsuarioDelaEmpresa(id_empresa));
+    }
+
 
     @PostMapping("/guardarUsuario")
     public ResponseEntity <Usuario> guardarUsuario(@RequestBody Usuario usuario) {
         return new ResponseEntity<>(usuarioService.guardarUsuario(usuario), HttpStatus.CREATED);
     }
-
-    
 
     @GetMapping("/{username}")
     public Usuario obtenerUsuario(@PathVariable("username") String username){
@@ -44,8 +55,6 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.buscarPerson(cedula));
 
     }
-
-
 
 
 }

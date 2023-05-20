@@ -1,7 +1,7 @@
 package ista.Backed20.api.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -12,22 +12,17 @@ public class Rol {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_rol;
 	
-	private String nombre_rol;
+	private String name;
 	private String descripcion;
 	private Boolean estado;
-	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "rol")
-	private Set<Permisos> rolespermisos = new HashSet<>();
-
-
 
 	public Rol() {
 		super();
 	}
 
-	public Rol(String nombre_rol, String descripcion, Boolean estado) {
+	public Rol(String name, String descripcion, Boolean estado) {
 		super();
-		this.nombre_rol = nombre_rol;
+		this.name = name;
 		this.descripcion = descripcion;
 		this.estado = estado;
 	}
@@ -40,12 +35,12 @@ public class Rol {
 		this.id_rol = id_rol;
 	}
 
-	public String getNombre_rol() {
-		return nombre_rol;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre_rol(String nombre_rol) {
-		this.nombre_rol = nombre_rol;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescripcion() {

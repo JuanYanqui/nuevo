@@ -15,4 +15,6 @@ public interface ProductoService {
     public List<Productos> findAll();
 
     public void delete(Long id);
+
+    public List<Productos> findAllProductosDelaEmpresa(long id_empresa);
 }

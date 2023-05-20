@@ -1,7 +1,7 @@
 package ista.Backed20.api.service;
 
+import ista.Backed20.api.entity.Usuario;
 import ista.Backed20.api.repository.RolRepository;
-import ista.Backed20.api.repository.UsuarioRolRepository;
 import ista.Backed20.api.entity.Rol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +15,6 @@ public class RolServiceImpl implements RolService {
 	
 	@Autowired
     private RolRepository rolRepository;
-	
-	@Autowired
-    private UsuarioRolRepository userRolRepository;
 
     @Override
     public List<Rol> findAll() {
@@ -39,11 +36,21 @@ public class RolServiceImpl implements RolService {
     }
 
     @Override
+    public Rol findByName(String nombre) {
+        return rolRepository.findByName(nombre);
+    }
+
+    @Override
     @Transactional
     public void delete(Long id) {
         // TODO Auto-generated method stub
     	rolRepository.deleteById(id);
 
+    }
+
+    @Override
+    public List<Rol> findAllRolesDelaEmpresa(long id_empres) {
+        return (List<Rol>) rolRepository.findAllRolesDelaEmpresa(id_empres);
     }
 
 

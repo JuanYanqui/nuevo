@@ -7,15 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/rol")
 public class RolController {
+
 
 	@Autowired
 	private RolServiceImpl rolService;
@@ -37,8 +36,17 @@ public class RolController {
     }
 
 
+
+
     @GetMapping("/buscarRolesId/{id}")
     public ResponseEntity <Rol> buscar(@PathVariable Long id) {
         return new ResponseEntity<>(rolService.findById(id), HttpStatus.OK);
     }
+
+    @GetMapping("/listarRolesPorEmpresa/{id_empresa}")
+    public ResponseEntity <List<Rol>> listarRolesPorEmpresa(@PathVariable("id_empresa") long id_empresa) {
+        return ResponseEntity.ok().body(rolService.findAllRolesDelaEmpresa(id_empresa));
+    }
+
+
 }

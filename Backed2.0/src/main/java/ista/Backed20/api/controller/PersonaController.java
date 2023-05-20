@@ -35,6 +35,11 @@ public class PersonaController {
     }
 
     @PostMapping("/guardarPersona")
+    public ResponseEntity <Persona> crearPersona(@RequestBody Persona persona) {
+        return new ResponseEntity<>(personaService.save(persona), HttpStatus.CREATED);
+    }
+
+    /*@PostMapping("/guardarPersona/{file}")
     public ResponseEntity <Persona> crearPersona(@RequestBody Persona persona, @RequestParam("file")MultipartFile imagen ) {
 
         if (!imagen.isEmpty()) {
@@ -54,7 +59,7 @@ public class PersonaController {
 
         }
         return new ResponseEntity<>(personaService.save(persona), HttpStatus.CREATED);
-    }
+    }*/
 
     @DeleteMapping("/eliminarPersona/{id}")
     public ResponseEntity <?> eliminarcompra(@PathVariable long id) {

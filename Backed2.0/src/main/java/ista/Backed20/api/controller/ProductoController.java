@@ -23,6 +23,11 @@ public class ProductoController {
         return new ResponseEntity<>(productoService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/listarProductosPorEmpresa/{id_empresa}")
+    public ResponseEntity <List<Productos>> listarProductosPorEmpresa(@PathVariable("id_empresa") long id_empresa) {
+        return ResponseEntity.ok().body(productoService.findAllProductosDelaEmpresa(id_empresa));
+    }
+
     @PostMapping("/guardarProductos")
     public ResponseEntity <Productos> crearProductos(@RequestBody Productos productos) {
         return new ResponseEntity<>(productoService.save(productos), HttpStatus.CREATED);
